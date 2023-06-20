@@ -3,7 +3,7 @@ const initDatabase = require("./models");
 const initRepository = require("./repositories");
 const initControllers = require("./controllers");
 const initRoutes = require("./routes");
-const initUtil = require("./utils");
+const initUtil = require("./middleware");
 const initSchemas = require("./schema");
 
 const container = createContainer();

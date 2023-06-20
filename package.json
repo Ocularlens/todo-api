@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/app.js"
+    "start": "nodemon ./src/app.js",
+    "test": "jasmine MYSQL_DATABASE=todoDBtest NODE_ENV=testing"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
+    "jasmine": "^5.0.2",
     "nodemon": "^2.0.22"
   }
 }

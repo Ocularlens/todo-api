@@ -7,6 +7,7 @@ const {
   MYSQL_USERNAME,
   MYSQL_PASSWORD,
   MYSQL_PORT,
+  NODE_ENV,
 } = require("../config/config");
 
 module.exports = () => {
@@ -18,6 +19,7 @@ module.exports = () => {
       username: MYSQL_USERNAME,
       password: MYSQL_PASSWORD,
       database: MYSQL_DATABASE,
+      logging: NODE_ENV !== "testing" ? true : false,
     });
 
     // init models

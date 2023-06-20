@@ -19,7 +19,7 @@ class Server {
 
   routes() {
     const listRoutes = container.resolve("ListRouter");
-    this.server.use('/list', listRoutes.router);
+    this.server.use("/list", listRoutes.router);
   }
 
   async start() {

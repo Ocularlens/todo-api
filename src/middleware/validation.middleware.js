@@ -1,4 +1,4 @@
-class ValidationUtil {
+class ValidationMiddleware {
   constructor() {}
 
   validate(schema) {
@@ -24,7 +24,9 @@ class ValidationUtil {
 
       if (error) {
         const { details } = error;
-        const message = details.map((i) => i.message + 'in query parameters').join(",");
+        const message = details
+          .map((i) => i.message + "in query parameters")
+          .join(",");
         console.log(error);
         return res
           .status(422)
@@ -36,4 +38,4 @@ class ValidationUtil {
   }
 }
 
-module.exports = ValidationUtil;
+module.exports = ValidationMiddleware;

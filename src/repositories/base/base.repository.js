@@ -3,6 +3,26 @@ class BaseRepository {
     this.model = model;
   }
 
+  async paginate(page, pageSize) {
+    const offset = page * pageSize;
+    const limit = pageSize;
+
+    const count = await this.model.count();
+
+    const paginateObj = {
+      offset,
+      limit,
+    };
+
+    const results = await this.model.findAll(paginateObj);
+    return {
+      data: results,
+      total: count,
+      maxPage: Math.ceil(count / limit),
+      page: page + 1,
+    };
+  }
+
   async getAll() {
     const results = await this.model.findAll();
     return results;
@@ -48,7 +68,7 @@ class BaseRepository {
       return false;
     }
 
-    await todo.destroy()
+    await todo.destroy();
 
     return true;
   }

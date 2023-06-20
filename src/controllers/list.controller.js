@@ -9,8 +9,14 @@ class ListController {
   }
 
   async getAll(req, res, next) {
-    const result = await this.listRepository.getAll();
-    return res.json({ message: "ALDOUS", result });
+    try {
+      const { page, size } = req.query;
+      const result = await this.listRepository.paginate(+page - 1, +size);
+      return res.json({ message: "Todos", result });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
   }
 
   async addTodo(req, res, next) {
@@ -60,7 +66,7 @@ class ListController {
       return res.status(500).json({ message: "Internal server error" });
     }
   }
-  
+
   async getTodo(req, res, next) {
     try {
       const { id } = req.params;

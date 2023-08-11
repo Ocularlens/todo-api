@@ -1,7 +1,7 @@
 const { setUp, container } = require("./container");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { PORT } = require("./config/config");
+const { PORT, NODE_ENV } = require("./config/config");
 
 const express = require("express");
 
@@ -24,7 +24,7 @@ class Server {
 
   async start() {
     const database = container.resolve("database");
-    const isDev = true;
+    const isDev = NODE_ENV === "development" ? true : false;
     await database.sync({ alter: isDev });
     this.server.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);

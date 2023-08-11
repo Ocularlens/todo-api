@@ -1,10 +1,20 @@
-const { asClass } = require("awilix");
-const ListRouter = require("./list.router");
+const { asClass } = require('awilix');
+const fs = require('fs');
+const _ = require('lodash');
 
-const initControllers = () => {
-  return {
-    ListRouter: asClass(ListRouter),
-  };
+const initializeRouters = () => {
+  const files = fs.readdirSync(__dirname);
+  const routers = {};
+
+  files.forEach(file => {
+    if (file === 'index.js' || file === 'base') return;
+
+    const router = require(`./${file}`);
+    const routerName = _.capitalize(file.split('.')[0])+_.capitalize(file.split('.')[1]);
+    routers[routerName] = asClass(router);
+  });
+
+  return routers;
 };
 
-module.exports = initControllers;
+module.exports = initializeRouters;

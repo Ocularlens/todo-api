@@ -12,4 +12,5 @@ module.exports = {
   REDIS_PORT: process.env.REDIS_PORT || 6379,
   REDIS_USER: process.env.REDIS_USER || "default",
   REDIS_PASSWORD: process.env.REDIS_PASSWORD || "eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81",
+  CACHE_TIME: process.env.CACHE_TIME || 1800,
 };

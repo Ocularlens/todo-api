@@ -7,7 +7,10 @@ class CacheMiddleware {
   async checkCache(req, res, next) {
     const cachedResponse = await this.redisUtil.get(req.originalUrl);
 
-    if (!cachedResponse) return next();
+    if (!cachedResponse) {
+      console.log(`Cache miss for request ${req.originalUrl}`);
+      return next();
+    }
 
     console.log(`Cache hit for request ${req.originalUrl}`);
     return res.status(200).json(JSON.parse(cachedResponse));

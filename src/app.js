@@ -22,7 +22,8 @@ class Server {
 
   routes() {
     const listRoutes = container.resolve("ListRouter");
-    this.server.use("/list", listRoutes.router);
+    const sslMiddleware = container.resolve("SslMiddleware");
+    this.server.use("/list", sslMiddleware.validateSSL, listRoutes.router);
   }
 
   async start() {
@@ -42,6 +43,9 @@ class Server {
       {
         key: fs.readFileSync(path.join(__dirname, "../cert", "key.pem")),
         cert: fs.readFileSync(path.join(__dirname, "../cert", "cert.pem")),
+        ca: fs.readFileSync(path.join(__dirname, "../cert", "cert.pem")),
+        requestCert: true,
+        rejectUnauthorized: false,
       },
       this.server
     );

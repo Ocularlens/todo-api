@@ -57,7 +57,7 @@ jobs:
       - name: Build and push production image
         uses: docker/build-push-action@v6
         with:
-          push: push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKERHUB_PROJECT_NAME }}:latest

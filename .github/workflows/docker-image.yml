@@ -33,6 +33,7 @@ jobs:
           from: 'GitHub Actions <${{ secrets.EMAIL_USERNAME }}>'
 
   build:
+    if: inputs.skip_environment == false
     name: Build Docker Image
     runs-on: ubuntu-latest
 

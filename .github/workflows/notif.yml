@@ -1,17 +1,10 @@
 name: Email Notification CI
 
 on:
-  push:
-    branches:
-      - feature/*
-      - master
-      - main
-      - dev
-  pull_request:
-    branches:
-      - main
-      - master
-      - dev
+  workflow_run: 
+    workflows: ["Docker Image CI"]
+    types:
+      - completed
 
 jobs:
   notify:

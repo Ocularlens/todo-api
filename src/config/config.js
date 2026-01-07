@@ -7,7 +7,7 @@ module.exports = {
   MYSQL_HOST: process.env.MYSQL_HOST || "",
   NODE_ENV: process.env.NODE_ENV || "",
   MYSQL_PORT: process.env.MYSQL_PORT || 3306,
-  PORT: process.env.DATABASE_URL || 3000,
+  PORT: process.env.PORT || 3000,
   REDIS_HOST: process.env.REDIS_HOST || "127.0.0.1",
   REDIS_PORT: process.env.REDIS_PORT || 6379,
   REDIS_USER: process.env.REDIS_USER || "default",

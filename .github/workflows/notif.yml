@@ -35,3 +35,4 @@ jobs:
             Commit SHA: ${{ github.sha }}
             Branch: ${{ github.ref }}
           to: ${{ secrets.EMAIL_TO }}
+          from: 'GitHub Actions <${{ secrets.EMAIL_USERNAME }}>'

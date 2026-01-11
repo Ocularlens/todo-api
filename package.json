@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon ./src/app.js",
-    "test": "jasmine MYSQL_DATABASE=todoDBtest NODE_ENV=testing",
+    "test": "jasmine",
     "start": "node ./src/app.js"
   },
   "keywords": [],

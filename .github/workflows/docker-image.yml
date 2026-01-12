@@ -14,6 +14,8 @@ jobs:
     name: Run Integration Tests
     runs-on: ubuntu-latest
 
+    container: node:20
+
     services:
       mysql:
         image: mysql:8.0
@@ -43,7 +45,7 @@ jobs:
         env:
           MYSQL_HOST: mysql
           MYSQL_PORT: 3306
-          MYSQL_USER: root
+          MYSQL_USERNAME: root
           MYSQL_PASSWORD: 1234
           MYSQL_DATABASE: testdb
 
@@ -68,13 +70,6 @@ jobs:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: ${{ runner.os }}-buildx-
-
-      - name: Cache npm dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-npm-
 
       - name: Extract metadata
         id: meta

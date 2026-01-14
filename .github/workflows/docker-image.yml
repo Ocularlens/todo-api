@@ -11,7 +11,6 @@ on:
       - dev
 jobs:
   lint:
-    if: github.event_name == 'pull_request'
     name: Lint Codebase
     runs-on: ubuntu-latest
 
@@ -29,7 +28,7 @@ jobs:
   test:
     name: Run Integration Tests
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && success()
+    if: success()
     needs: lint
 
     container: node:20

@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - master
-      - dev
+      - dev      
 jobs:
   lint:
     name: Lint Codebase
@@ -63,7 +63,7 @@ jobs:
           MYSQL_DATABASE: testdb
 
   build:
-    if: github.event_name != 'pull_request' && success()
+    if: github.event_name == 'pull_request' && success()
     needs: test
     name: Build Docker Image
     runs-on: ubuntu-latest

@@ -5,7 +5,7 @@ describe("Repositories", function () {
     setUp();
     const database = container.resolve("database");
     await database.sync();
-  });
+  }, 30000);
 
   describe("ListRepository", function () {
     describe("positive scenario", function () {

@@ -6,11 +6,23 @@ const {
   REDIS_USER,
 } = require("../config/config");
 
-const redisClient = new Redis({
-  host: REDIS_HOST,
-  port: REDIS_PORT,
-  username: REDIS_USER,
-  password: REDIS_PASSWORD,
-});
 
-module.exports = redisClient;
+
+const initializeRedis = async () => {
+  try {
+    const redisClient = new Redis({
+      host: REDIS_HOST,
+      port: REDIS_PORT,
+      username: REDIS_USER,
+      password: REDIS_PASSWORD,
+    });
+    await redisClient.ping();
+    console.log("Connected to Redis successfully");
+    return redisClient;
+  } catch (error) {
+    console.error("Failed to connect to Redis:", error);
+    throw error;
+  }
+};
+
+module.exports = initializeRedis;

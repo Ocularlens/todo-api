@@ -3,13 +3,15 @@ name: Docker Image CI
 on:
   push:
     branches:
-      - feature/*
+      - main
+      - dev
   pull_request:
     branches:
-      - master
+      - main
       - dev
 jobs:
   lint:
+    if: github.event_name == 'pull_request'
     name: Lint Codebase
     runs-on: ubuntu-latest
 
@@ -27,7 +29,7 @@ jobs:
   test:
     name: Run Integration Tests
     runs-on: ubuntu-latest
-    if: success()
+    if: github.event_name == 'pull_request' && success()
     needs: lint
 
     container: node:20
@@ -63,7 +65,7 @@ jobs:
           MYSQL_DATABASE: testdb
 
   build:
-    if: github.event_name == 'pull_request' && success()
+    if: github.event_name == 'push' && success()
     needs: test
     name: Build Docker Image
     runs-on: ubuntu-latest

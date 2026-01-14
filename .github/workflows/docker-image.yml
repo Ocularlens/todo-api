@@ -9,6 +9,10 @@ on:
     branches:
       - main
       - dev
+  merge_group: 
+    branches: 
+      - main
+      - dev
 jobs:
   lint:
     name: Lint Codebase
@@ -48,12 +52,6 @@ jobs:
           --health-retries=5
 
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-
       - name: Run Integration Tests
         run: npm ci && npm test
         env:

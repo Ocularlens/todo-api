@@ -11,7 +11,7 @@ class ListController {
     this.redisUtil = redisUtil;
   }
 
-  async getAll(req, res, next) {
+  async getAll(req, res) {
     try {
       const { page, size } = req.query;
       const result = await this.listRepository.paginate(+page - 1, +size);
@@ -31,11 +31,11 @@ class ListController {
     }
   }
 
-  async addTodo(req, res, next) {
+  async addTodo(req, res) {
     try {
       const { content } = req.body;
       console.log(content);
-      const todo = await this.listRepository.insertOne({ content });
+      await this.listRepository.insertOne({ content });
 
       return res.json({ message: "Todo added successfully" });
     } catch (error) {
@@ -44,7 +44,7 @@ class ListController {
     }
   }
 
-  async updateTodo(req, res, next) {
+  async updateTodo(req, res) {
     try {
       const { content } = req.body;
       const { id } = req.params;
@@ -62,7 +62,7 @@ class ListController {
     }
   }
 
-  async deleteTodo(req, res, next) {
+  async deleteTodo(req, res) {
     try {
       const { id } = req.params;
 
@@ -79,7 +79,7 @@ class ListController {
     }
   }
 
-  async getTodo(req, res, next) {
+  async getTodo(req, res) {
     try {
       const { id } = req.params;
 
